@@ -26,7 +26,7 @@
     @foreach ($posts as $post)
         <div class="sm:grid grid-cols-2 gap-20 w-4/5 mx-auto py-15 border-b border-gray-200">
             <div>
-                <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nzl8fHRlY2h8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" width="700" alt="">
+                <img src="{{ asset('images/' . $post->image_path) }}" width="700" alt="">
             </div>
             <div>
                 <h2 class="text-gray-700 font-bold text-5xl pb-4">
@@ -51,6 +51,15 @@
                             class="text-gray-700 italic hover:text-gray-900 pb-1 border-b-2">
                             Edit
                         </a>
+                    </span>
+
+                    <span class="float-right">
+                        <form action="/blog/{{ $post->slug }}"" method="post" class="">
+                            @csrf
+                            @method('delete')
+
+                            <button class="text-red-500 pr-3" type="submit">Delete</button>
+                        </form>
                     </span>
                 @endif
             </div>
